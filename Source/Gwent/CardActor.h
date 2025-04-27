@@ -6,9 +6,10 @@
 #include "GameFramework/Actor.h"
 #include "Card.h"
 #include "Components/TextRenderComponent.h"
+#include "Delegates/DelegateCombinations.h"
 #include "CardActor.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class GWENT_API ACardActor : public AActor
 {
 	GENERATED_BODY()
@@ -24,6 +25,12 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void OnCardClicked(UPrimitiveComponent* ClickedComp, FKey ButtonPressed);
+
+	UFUNCTION()
+	void OnMouseOver(UPrimitiveComponent* TouchedComp);
 
 	// Initialize the card actor with a card
 	UFUNCTION(BlueprintCallable, Category = "Card")
