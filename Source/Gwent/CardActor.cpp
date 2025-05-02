@@ -61,9 +61,6 @@ void ACardActor::BeginPlay()
 	Super::BeginPlay();
 	
 	EnableInput(GetWorld()->GetFirstPlayerController());
-
-	CubeMesh->OnClicked.AddDynamic(this, &ACardActor::OnCardClicked);
-	CubeMesh->OnBeginCursorOver.AddDynamic(this, &ACardActor::OnMouseOver);
 }
 
 // Called every frame
@@ -86,18 +83,6 @@ void ACardActor::InitializeCard(UCard* Card)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("InitializeCard: Card is null"));
 	}
-}
-
-
-void ACardActor::OnCardClicked(UPrimitiveComponent* ClickedComp, FKey ButtonPressed)
-{
-	UE_LOG(LogTemp, Log, TEXT("Card clicked: %s"), *GetCardName());
-
-}
-
-void ACardActor::OnMouseOver(UPrimitiveComponent* TouchedComp)
-{
-	UE_LOG(LogTemp, Log, TEXT("Mouse over card: %s"), *GetCardName());
 }
 
 FString ACardActor::GetCardName() const
